@@ -1,7 +1,7 @@
-# Newspaper client management college project made on netbeans 8.2 (9/2021)
-- Made with JAVA
+# Newspaper client management college project V3 (9/2021)
+- Made with JAVA on netbeans 8.2 
 - OOP usage
-- File manipulation
+- File manipulation to store and retrieve data
 
 ![Screenshot (165)](https://user-images.githubusercontent.com/68315828/195618675-99facdfa-b489-407d-92f2-496d75e00738.png)
 
