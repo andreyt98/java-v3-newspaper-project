@@ -23,8 +23,7 @@ public class DatosCliente{
         this.nombre = "";
         this.primerApellido = "";
         this.segundoApellido = "";
-        this.edad = 0;
-    
+        this.edad = 0;   
     }
   
     //getters y setters
@@ -67,14 +66,9 @@ public class DatosCliente{
     public void setEdad(int edad) {
         this.edad = edad;
     }
- 
-    
+     
  @Override
-    public String toString(){
-        
-        return this.getId() + "-" + this.getNombre() + "-" + this.getPrimerApellido() +"-" + this.getSegundoApellido() +"-" + this.getEdad() + "\n";
-   
-        
+    public String toString(){        
+        return this.getId() + "-" + this.getNombre() + "-" + this.getPrimerApellido() +"-" + this.getSegundoApellido() +"-" + this.getEdad() + "\n";      
     }
-
 }
