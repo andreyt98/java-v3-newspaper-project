@@ -1,32 +1,24 @@
 package clases;
 
-
 public class AnuncioTradicional extends Anuncio{
-
-    
+ 
     //Atributos
     private boolean descuento = false;
     private double costoDescuento;//costo con descuento y sin iva
     private double costoIvaDescuento; // costo con descuento y con iva
 
-    public AnuncioTradicional(double costoDescuento, double costoIvaDescuento, String seccion, String titulo, String fecha, String descripcion, double costo, double costoIva) {
-      
-        super(seccion, titulo, fecha, descripcion, costo, costoIva);
-        
+    public AnuncioTradicional(double costoDescuento, double costoIvaDescuento, String seccion, String titulo, String fecha, String descripcion, double costo, double costoIva) {      
+        super(seccion, titulo, fecha, descripcion, costo, costoIva);       
         this.costoDescuento = costoDescuento;
         this.costoIvaDescuento = costoIvaDescuento;
     }
 
-
-    
     public AnuncioTradicional(){
         super();
         this.costoDescuento = 0;
         this.costoIvaDescuento = 0;
     }
     
-   
-   
     //setters y getters
     @Override
     public double getCosto() {
@@ -48,16 +40,12 @@ public class AnuncioTradicional extends Anuncio{
         this.costoIvaDescuento = costoIvaDescuento;
     }
     
-    
-    
     //métodos de costo
     public double costo(double costo, String descripcion) {
         
-        //costo con descuento segun cant. letras
-        
+        //costo con descuento segun cant. letras       
         if(descripcion.trim().length() >=15 && descripcion.trim().length()<= 19.9){
-            costoDescuento = costo - (costo/100) * 3;
-            
+            costoDescuento = costo - (costo/100) * 3;        
         
         }else if(descripcion.trim().length() >=20 && descripcion.trim().length()<= 24.9){
             costoDescuento = costo - (costo /100) * 6;
@@ -84,26 +72,12 @@ public class AnuncioTradicional extends Anuncio{
    
         return costoDescuento;
     }
-    
-    
-    
-   
+ 
     public double costoIva(){
     
         costoIvaDescuento = (costoDescuento + (costoDescuento * 0.13)) ; 
         
         return costoIvaDescuento;
     }
-
    
-      
    }
-    
-
-   
-    
-    
-    
-    
-    
-
