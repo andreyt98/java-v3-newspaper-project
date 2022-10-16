@@ -1,9 +1,6 @@
-
 package clases;
 
-
-public class DatosAnuncio {
-    
+public class DatosAnuncio {    
     //Atributos
     int idCliente;
     String titulo;
@@ -35,15 +32,12 @@ public class DatosAnuncio {
         this.costo = 0;
         this.costoIva = 0;
     }
-    
-    
-    
+  
     //setter y getters
     public int getIdCliente() {    
         return idCliente;
     }
-
-    
+ 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
@@ -103,10 +97,7 @@ public class DatosAnuncio {
 
     public void setCostoIva(double costoIva) {
         this.costoIva = costoIva;
-    }
-    
-  
-    
+    } 
    
     public String toString(int id ){
         
@@ -117,26 +108,7 @@ public class DatosAnuncio {
                         "-" + this.getFecha()+
                         "-" + this.getDatoExtra()+
                         "-" + this.getCosto()+
-                        "-" + this.getCostoIva()+ "\n";
-   
-        return datos;
-   
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+                        "-" + this.getCostoIva()+ "\n"; 
+        return datos;   
+    }    
 }
-
-
