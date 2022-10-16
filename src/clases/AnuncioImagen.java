@@ -1,7 +1,4 @@
-
 package clases;
-
-
 
 public class AnuncioImagen extends Anuncio{
     
@@ -16,35 +13,22 @@ public class AnuncioImagen extends Anuncio{
         this.costoConMilimetro = costoConMilimetro;
         this.costoConMilimetroIva = costoConMilimetroIva;
     }
-    
-    
-    
-    
-    
-    
+
     public AnuncioImagen(){
         super();
         this.milimetroCuadrado = 0;
         this.costoConMilimetro = 0;
         this.costoConMilimetroIva = 0;
     }
-    
-    
-    
-    
-    //setters y getters
-    
+
+    //setters y getters   
     //cantidad de milimetros de la imagen
-    public void setMilimetros(double milimetroCuadrado){    
-        
-        this.milimetroCuadrado = milimetroCuadrado;
- 
+    public void setMilimetros(double milimetroCuadrado){           
+        this.milimetroCuadrado = milimetroCuadrado; 
     }
     
-    public double getMilimetros(){
-        
-        return milimetroCuadrado;
-        
+    public double getMilimetros(){      
+        return milimetroCuadrado;        
     }
 
     @Override
@@ -56,9 +40,7 @@ public class AnuncioImagen extends Anuncio{
     public void setCosto(double costoConMilimetro) {
         this.costoConMilimetro = costoConMilimetro;
     }
-
-    
-    
+ 
     @Override
     public double getCostoIva() {
         return costoConMilimetroIva;
@@ -68,30 +50,19 @@ public class AnuncioImagen extends Anuncio{
     public void setCostoIva(double costoConMilimetroIva) {
         this.costoConMilimetroIva = costoConMilimetroIva;
     }
-    
-    
-    
+   
     //métodos de costo
-
     public double costo(double costo, double milimetroCuadrado) {
 
         costoConMilimetro = costo + (25*milimetroCuadrado);
 
         return costoConMilimetro;
     }
-    
-    
-
    
     public double costoIva(double costoConMilimetro, double milimetroCuadrado) {
 
         costoConMilimetroIva = costoConMilimetro + (costoConMilimetro*0.13);
 
         return costoConMilimetroIva;
-
-    }
-
- 
-    
-    
+    }    
 }
