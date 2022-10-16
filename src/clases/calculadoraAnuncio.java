@@ -1,4 +1,3 @@
-    
 package clases;
 
 import java.io.BufferedReader;
@@ -21,7 +20,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class calculadoraAnuncio extends javax.swing.JFrame {
     
     //instanciando las clases
@@ -40,20 +38,16 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
     File auxUpdate; //archivo auxiliar para actualizar datos
 
     File auxDelete; //archivo auxiliar para borrar 
-   
     
     //darle formato a los resultados de costo
     DecimalFormat format = new DecimalFormat(".00");
     DecimalFormat format2 = new DecimalFormat();
 
-  
-   
    //iconos
     Icon incorrecto = new javax.swing.ImageIcon(getClass().getResource("/images/incorrecto.png"));  
     Icon correcto = new javax.swing.ImageIcon(getClass().getResource("/images/correcto.png"));
     Icon alerta = new javax.swing.ImageIcon(getClass().getResource("/images/alerta.png"));
     Icon venta = new javax.swing.ImageIcon(getClass().getResource("/images/venta.png"));
-    
    
     List<DatosCliente> listaCliente =  new ArrayList<>();
 
@@ -66,9 +60,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         archivoAnuncios  =  new File("anuncios.dat");
         auxUpdate = new File("auxUpdate.dat");
         auxDelete = new File("auxDelete.dat");
-   
-        
-        
+    
         //extras de diseño
         txtvalor.setVisible(false);
         labelNuevosDatos.setVisible(false);
@@ -83,9 +75,6 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/images/thumbnail.png")).getImage()); //thumbnail
      
     }
-
-    
-    
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -940,30 +929,24 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
     //1.agregar cliente
     //------------------------
     
     //validacion datos 
     private boolean agregarCliente(){
-        
-        
+               
         try {
             archivoClientes.createNewFile();//creamos el archivo de clientes
        
         } catch (IOException ex) {
             Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-      
+           
         BufferedWriter archClienteW = null;//declaramos variable con la que vamos a escribir en el archivo
         boolean guardar = true;
         
         if(archivoClientes.exists()){//si se creo, solicitamos datos
-            
-            
+         
             try{
                 
                 archClienteW =  new BufferedWriter(new FileWriter(archivoClientes,true)); //inicializamos variable indicandole en cual archivo escribiremos
@@ -1025,21 +1008,17 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                 
             } catch (IOException ex) {
                     Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            
+            }      
         }
     
         }
       
         return guardar;
     }
-   
-   
+ 
    //retorna si el id ya exista en el archivo especificado
     public boolean idExiste(String id, File archivo){
-        
-    
+ 
         BufferedReader archClienteR = null; //variable con la que se leera el archivo de clientes
         boolean existe = false;
 
@@ -1048,8 +1027,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
             try {
                 
                 archClienteR = new BufferedReader(new FileReader(archivo));//se leera el archivo de clientes a tarves de archClienteR
-
-                
+               
                 String linea;
                 while((linea = archClienteR.readLine()) != null){ //se itera sobre el archivo hasta que sea null
 
@@ -1059,14 +1037,10 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
     
                     if (String.valueOf(idUser).equals(id)){//si ambos son iguales es un registro ya existente 
                          
-                        existe = true;
-       
+                        existe = true;      
                     }
-
-
                 }
-                
-                
+          
             } catch (IOException ex) {
                 
                 Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1077,22 +1051,17 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                    
                     try {
                         archClienteR.close();//cerramos el archivo
-                        //ir a linea 1003
 
                     } catch (IOException ex) {
                         Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                
+                    }             
                 }
-            
-            
             }
   
         }
    
         return existe;
-    }
-   
+    }  
     
     //2.cotizar Anuncio
     //------------------------
@@ -1134,20 +1103,15 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                 
                 txtvalor.setVisible(false);
                 labelNuevosDatos.setVisible(false);
-                labelSimbolo.setVisible(false);
-                
-             
+                labelSimbolo.setVisible(false);           
             }
- 
          }
-
     }
    
     //2.1 valida que cada dato de anuncio esté correcto
     private boolean datosValidosAnuncio(){
         
-        boolean enviar = true;
-        
+        boolean enviar = true;     
 
         try{
             
@@ -1162,8 +1126,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
             anuncio.setCostoIva(anuncio.costoIva(ComboSecciones));
       
             if(btnFrecuente.isSelected() || btnImagen.isSelected()){ // si el anuncio es de cli. frecuente o conimagen
-                                                                        //muestra diferentes labels y guarda en diferentes varibales
-                                                                        //el valor de cada uno                              
+                                                                        //muestra diferentes labels y guarda en diferentes varibales                                                                       //el valor de cada uno                              
                 try{
 
                     if(btnFrecuente.isSelected()){
@@ -1201,11 +1164,9 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         return enviar;  
     }
     
-  
     //2.2 guardar datos de anuncio (en caso de id existente)
 
     private void guardarAnuncio(){
-
    
       try {
             archivoAnuncios.createNewFile();//creamos archivo
@@ -1213,17 +1174,14 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    
+  
         BufferedWriter archivoAnunciosW = null;
-        
-        
+                
         if(archivoAnuncios.exists()){
            
              try{
                 archivoAnunciosW =  new BufferedWriter(new FileWriter(archivoAnuncios,true));
-                 
-               
+                          
                  //los archivos se pueden cotizar pero solo se guardan si la cedula esta registrada, por eso se solicita
                 String id = JOptionPane.showInputDialog(this, "Ingrese su cedula para registrar la venta.", "Último paso.", WIDTH);
 
@@ -1264,14 +1222,12 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
     //------------------------------
     
     private void actualizarDatos(){
-  
-  
+ 
         BufferedReader archClienteR = null; //lectura archivo de clientes
         BufferedWriter auxW = null; //escritura en archivo auxiliar
      
         if(archivoClientes.exists()){
-            
-          
+       
             try {
                 auxUpdate.createNewFile(); //creamos archivo auxiliar
 
@@ -1294,9 +1250,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
 
                     //se instancia la clase de datos del cliente
                     DatosCliente cl =  new DatosCliente(idCliente, nombre, ape, ape2, edad);
-
-                    
-                    
+                  
                     //cuando se seleccione el registro a modificar de la tabla esos valores se mostraran en los textfields
                     
                     //estos campos guardan los nuevos 
@@ -1304,8 +1258,6 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                     String Nuevoape = txtApellido.getText();
                     String Nuevoape2 = txtSegundoApellido.getText();
                     int Nuevaedad = Integer.parseInt(edad2.getSelectedItem().toString());
-
-
 
                     DatosCliente cl2 =  new DatosCliente(idCliente, Nuevonombre, Nuevoape, Nuevoape2, Nuevaedad);
 
@@ -1334,7 +1286,6 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                 txtApellido.setText("");
                 txtSegundoApellido.setText("");
 
-
                 //cerramos ambos archivos
                 auxW.close();
                 archClienteR.close();
@@ -1350,7 +1301,6 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         }
        
     }
- 
     
     //4.Ver anuncios vendidos
     //------------------------
@@ -1363,16 +1313,13 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         BufferedReader archAnuncioR = null;
       
         if(archivoAnuncios.exists()){
-                
-                
+           
             if(idExiste(txtBusqueda.getText(), archivoAnuncios)){
                 
                 try {
 
                     archAnuncioR = new BufferedReader(new FileReader(archivoAnuncios));
-
-
-
+                    
                     String linea;
                     while((linea = archAnuncioR.readLine()) != null){//iteramos
 
@@ -1381,8 +1328,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                         Object[] datos = new Object[8];//creamos array de objetos
                         
                         int cont = 0; // para guardar datos en array segun index
-                        
-                        
+                                             
                         while(tokens.hasMoreTokens()){
 
                             //guardamos cada dato en el array segun su posicion
@@ -1412,22 +1358,14 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                                 case 7:datos[7] = tokens.nextToken();//COSTO IVA
                                 break;
 
-                            }
-                            
+                            }              
                             cont++;
-
                         }
-
-                        
+                    
                         model.addRow(datos);
                         
                         tablaVerDatos.setModel(model);
-
-
                     }
-
-
-
 
                 } catch (FileNotFoundException ex) {
                         Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1450,18 +1388,13 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
             
                 tablaVerDatos.setModel(model); //limpiar la tabla
                 JOptionPane.showMessageDialog(this, "El id ingresado no cuenta con ningún anuncio vendido.");
-                txtBusqueda.setText("");
-
-                
-            
+                txtBusqueda.setText("");     
             }
-
 
         }else{ // si no existe arch de anuncios
             
             JOptionPane.showMessageDialog(this, "Aún no se han registrado ningún anuncio");
-            txtBusqueda.setText("");
-            
+            txtBusqueda.setText("");            
         }                             
     }
      
@@ -1469,10 +1402,8 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
     //------------------------------
 
     private void borrar(String id){
-    
-    
-        try {
-            
+        
+        try {            
             archivoAnuncios.createNewFile();
             
         } catch (IOException ex) {
@@ -1490,17 +1421,14 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                 int seleccion = JOptionPane.showConfirmDialog(this, "está seguro que desea borrar sus datos?", "Atencion!",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         
                 if(seleccion == 0){
-                   
-       
+                         
                     try {
                         
                         archClienteR = new BufferedReader(new FileReader(archivoClientes));//lectura en archivo de clientes
                         auxW =  new BufferedWriter(new FileWriter(auxDelete));//escritura archivo anuncios
 
-
                         String linea;  
                         while((linea = archClienteR.readLine()) != null){ //iteramos sobre el archivo
-
 
                             StringTokenizer tokens = new StringTokenizer(linea,"-");
 
@@ -1516,26 +1444,20 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                             if(!String.valueOf(cl.getId()).equals(id)){ //si el id dentro del archivo es diferente al recibido, se guarda info
 
                                 auxW.write(cl.toString()); //o sea, se excluye cada dato que se encuentre en la misma linea en donde estaba el id
-
                             }
-
-
                         }
 
                         JOptionPane.showMessageDialog(this, "Cuenta borrada con éxito!", "Atención!", 0, correcto);
 
                         txtIdABorrar.setText("");
 
-
                         //cerramos archivo
                         auxW.close();
                         archClienteR.close();
-
-
+                        
                         archivoClientes.delete();//borramos arch original
                         File auxiliar =  new File("clientes.dat");
                         auxDelete.renameTo(auxiliar);//renombramos el auxiliar con el nombre del original
-
 
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1546,7 +1468,6 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                 }else{ //si se selecciona cancelar
                     JOptionPane.showMessageDialog(this, "operación cancelada.");
                     txtIdABorrar.setText("");
-
                 }
 
             // si el archivo de anuncio existe y hay anuncios guardamos relacionada con el id introducido, no se puede borrar
@@ -1559,8 +1480,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
             
                 JOptionPane.showMessageDialog(this, "ID no registrado");
             }
-        
-           
+                   
         }else{  // si no existe el archivo de clientes
         
                 JOptionPane.showMessageDialog(this, "Aún no existe ningun registro");
@@ -1568,12 +1488,10 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
 }  
 
 //------------------------------------------------------------------------------------------------------ 
-
-    
+   
     //extras
     //busca que cliente exista y muestra datos en una tabla
-    private void limpiarCampos(){
-    
+    private void limpiarCampos(){    
         txtId1.setText("");
         txtApellido1.setText("");
         txtNombre1.setText("");
@@ -1581,42 +1499,33 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         edad1.setSelectedItem(0);
     }
   
-    private void btnAvanzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAvanzarMouseClicked
-        
+    private void btnAvanzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAvanzarMouseClicked        
         tipoDeAnuncio();
     }//GEN-LAST:event_btnAvanzarMouseClicked
 
-
-    private void btnCotizaRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCotizaRMouseClicked
-   
+    private void btnCotizaRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCotizaRMouseClicked   
             tabs2.setSelectedIndex(1);
             logofijado.setVisible(true);
             Icon iconCotizar = new javax.swing.ImageIcon(getClass().getResource("/images/cotizarH.png"));
 
             btnCotizaR.setSelectedIcon(iconCotizar);
             limpiarTabla();
-
     
     }//GEN-LAST:event_btnCotizaRMouseClicked
 
-    private void actualizarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizarDatosMouseClicked
-      
+    private void actualizarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizarDatosMouseClicked     
         tabs2.setSelectedIndex(4);
         Icon iconActualizar = new javax.swing.ImageIcon(getClass().getResource("/images/actualizarH.png"));
-
         actualizarDatos.setSelectedIcon(iconActualizar);
         logofijado.setVisible(true);
         botonesTipoAnuncio.clearSelection();
         txtTitulo.setText("");
         txtDescripcion.setText("");
-
     }//GEN-LAST:event_actualizarDatosMouseClicked
 
-    private void btnVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseClicked
-    
+    private void btnVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseClicked   
         tabs2.setSelectedIndex(5);
         Icon iconVer = new javax.swing.ImageIcon(getClass().getResource("/images/verH.png"));
-
         btnVer.setSelectedIcon(iconVer);
         botonesTipoAnuncio.clearSelection();
         txtTitulo.setText("");
@@ -1630,8 +1539,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         setState(calculadoraAnuncio.ICONIFIED);// TODO add your handling code here:
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
-    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-     
+    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked  
              System.exit(0);        
     }//GEN-LAST:event_btnSalirMouseClicked
 
@@ -1647,7 +1555,6 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
 
             }else if(btnImagen.isSelected()){
                 conImagen.setMilimetros(Double.parseDouble(txtvalor.getText()+input));
-
             }
 
             validacion.setText("");
@@ -1655,13 +1562,11 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         }catch(NumberFormatException e){
 
             validacion.setText("Numero invalido");
-
         }
     }//GEN-LAST:event_txtvalorKeyPressed
 
     private void DatosAnuncioTradicional(){
-        
-      
+              
        if(anuncio.descripcion.length() <15){//sin descuento
                         
            //toma los valores de costo y les da un formato
@@ -1672,29 +1577,21 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
             costoResultado.setText(String.valueOf(costoFormat));
             costoIvaResultado.setText(String.valueOf(costoIvaFormat));
             datoExtra.setText(String.valueOf("Descripción de "+ anuncio.descripcion.length()) + " caracteres (sin descuento)");
-
-            
-            
+         
         }else if(anuncio.descripcion.length() >=15){//con descuento
            
-   
             tradicional.setCosto(tradicional.costo(anuncio.costo, anuncio.descripcion));
             tradicional.setCostoIva(tradicional.costoIva());
-            
-            
+     
             String costoFormatDescuento = format.format(tradicional.getCosto());
             String costoIvaFormatDescuento = format.format(tradicional.getCostoIva());
-            
-            
+       
           //  le damos valores para mostrar a los fields de resultados
             costoResultado.setText(String.valueOf(costoFormatDescuento));
             costoIvaResultado.setText(String.valueOf(costoIvaFormatDescuento));
-            datoExtra.setText("Descripción de "+ String.valueOf(anuncio.descripcion.length()) + " caracteres (descuento aplicable)");
-     
-        }
-    
+            datoExtra.setText("Descripción de "+ String.valueOf(anuncio.descripcion.length()) + " caracteres (descuento aplicable)");     
+        }   
         mostrarDatos();
-
     }
     
     private void DatosAnuncioFrecuente(){
@@ -1710,13 +1607,11 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         
         costoResultado.setText(String.valueOf(costoFormat));
         costoIvaResultado.setText(String.valueOf(costoIvaFormat));
-        mostrarDatos();
-    
+        mostrarDatos();   
     }
    
     private void DatosAnuncioImagen(){
-    
-    
+  
         conImagen.costo(anuncio.costo, conImagen.getMilimetros());
         conImagen.costoIva(conImagen.getCosto(), conImagen.getMilimetros());
 
@@ -1731,17 +1626,14 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
 
         datoExtra.setText( milimetros + " milimetros   (₡" + costoxmilimetro + " extra)");
 
-        mostrarDatos();
-   
+        mostrarDatos();   
     }
    
     private void mostrarDatos(){
-    
         tituloResultado.setText("Titulo:    " + anuncio.titulo.toUpperCase());
         SeccionResultado.setText("Sección:    " + anuncio.seccion.toUpperCase());
         fechaResultado.setText("Fecha:    " +anuncio.fecha.toUpperCase());
-        descripcionResultado.setText("Descripción:   " +anuncio.descripcion.toUpperCase());
-   
+        descripcionResultado.setText("Descripción:   " +anuncio.descripcion.toUpperCase());   
     }
  
      private  void muestraClientesEnTabla(){
@@ -1750,15 +1642,12 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         DefaultTableModel model =  new DefaultTableModel(titulo,0);
         
         BufferedReader archClienteR = null;
-                
-                
-                
+              
         if(archivoClientes.exists()){//verificamos que exista archivo de clientes
             
             try {
 
                 archClienteR = new BufferedReader(new FileReader(archivoClientes));//lectura
-
 
                 String linea ;
 
@@ -1769,10 +1658,8 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                     
                     while((linea = archClienteR.readLine()) != null){//iteramos sobre archivo
 
-
                         StringTokenizer tokens = new StringTokenizer(linea,"-");
                         int id = Integer.parseInt(tokens.nextToken());
-
 
                         if(id == Integer.parseInt(txtBusqueda2.getText())){//si el id existe en archivo
 
@@ -1799,23 +1686,18 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
 
                                     case 4:datos[4] = tokens.nextToken() ;//edad
 
-                                }
-                                
+                                }                             
                                 cont++;
-
                             }
                                
                             model.addRow(datos);
 
                             tablaActualizar.setModel(model);
                         }
-
                     }      
 
                 }else{
-
-                    //si no existe el id limpiamos la tabla y mostramos mensaje
-                    
+                    //si no existe el id limpiamos la tabla y mostramos mensaje                    
                     btnActualizar.setVisible(false);
                     txtBusqueda2.setText("");
                     txtNombre.setText("");
@@ -1824,7 +1706,6 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                     tablaActualizar.setModel(model);
                     JOptionPane.showMessageDialog(this, "El id ingresado no está registrado.");
                 } 
-
 
             } catch (FileNotFoundException ex) {
                     Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
@@ -1847,8 +1728,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         }else{//si no aun no hay clientes registrados
             tablaActualizar.setModel(model);//limpia tabla
             JOptionPane.showMessageDialog(this, "Aún no se han registrado ninguna persona");
-       }
-    
+       }   
     }
 
     private void btnCotizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizarActionPerformed
@@ -1868,11 +1748,9 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
             }else if(btnImagen.isSelected()){
 
                 DatosAnuncioImagen();
-
             }
 
             mostrarDatos();
-
         }
     }//GEN-LAST:event_btnCotizarActionPerformed
 
@@ -1884,8 +1762,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         tabs2.setSelectedIndex(2);// TODO add your handling code here:
     }//GEN-LAST:event_flecha1MouseClicked
 
-    private void rechazarPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechazarPrecioMouseClicked
-        
+    private void rechazarPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechazarPrecioMouseClicked        
         tabs2.setSelectedIndex(0);
         botonesTipoAnuncio.clearSelection();
         botonesBarra.clearSelection();
@@ -1898,21 +1775,17 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rechazarPrecioMouseClicked
 
-    private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked
-    
+    private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked    
         tabs2.setSelectedIndex(6);
         logofijado.setVisible(true);
         limpiarTabla();
     }//GEN-LAST:event_btnBorrarMouseClicked
 
-    private void aceptarPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aceptarPrecioMouseClicked
- 
-        guardarAnuncio();
-  
+    private void aceptarPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aceptarPrecioMouseClicked 
+        guardarAnuncio();  
     }//GEN-LAST:event_aceptarPrecioMouseClicked
 
-    private void guardarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarClienteMouseClicked
-       
+    private void guardarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarClienteMouseClicked       
         if(agregarCliente() ){
             
             JOptionPane.showMessageDialog(this, "Cliente agregado!", "Felicidades!", 0, correcto);
@@ -1927,19 +1800,16 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         String [] titulos = {"ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Edad"};//titulos que tiene la tabla donde se muestrn datos
                         
         DefaultTableModel model =  new DefaultTableModel(titulos,0);
-        
+       
         tablaActualizar.setModel(model);//limpia la tabla
-
             
         txtBusqueda2.setText("");//limpiamos campos 
         txtNombre.setText("");
         txtApellido.setText("");
         txtSegundoApellido.setText("");
-
      }
   
     private void barraLateralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraLateralMouseClicked
-
         tabs2.setSelectedIndex(0);
         botonesBarra.clearSelection();
         botonesTipoAnuncio.clearSelection();
@@ -1951,17 +1821,14 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
     }//GEN-LAST:event_barraLateralMouseClicked
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-
         tabs2.setSelectedIndex(7);
         logofijado.setVisible(true);
 
-         Icon iconAgregar = new javax.swing.ImageIcon(getClass().getResource("/images/agregarH.png"));
+        Icon iconAgregar = new javax.swing.ImageIcon(getClass().getResource("/images/agregarH.png"));
 
         btnAgregar.setSelectedIcon(iconAgregar);
 
-            limpiarTabla();
-
-      
+        limpiarTabla();      
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
@@ -1970,7 +1837,6 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
 
     private void btnBuscarAnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarAnunciosMouseClicked
         verAnuncios();
-
     }//GEN-LAST:event_btnBuscarAnunciosMouseClicked
 
     //cuando se selecciona un registro de la tabla, los valores dentro de ella se muestra en textfields para editar y actualizar el registro
@@ -1990,28 +1856,20 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         
             if(edad2.getItemAt(i).equalsIgnoreCase(comboEdad2)){
             
-                edad2.setSelectedIndex(i);
-                
-            }
-      
+                edad2.setSelectedIndex(i);                
+            }     
         }
     }//GEN-LAST:event_tablaActualizarMouseClicked
 
-    private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseClicked
-    
-            actualizarDatos();
-    
+    private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseClicked    
+            actualizarDatos();    
     }//GEN-LAST:event_btnActualizarMouseClicked
 
-    private void buscarParaBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarParaBorrarMouseClicked
-    
-        
-        
+    private void buscarParaBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarParaBorrarMouseClicked 
             borrar(txtIdABorrar.getText());
     }//GEN-LAST:event_buscarParaBorrarMouseClicked
 
-   private void activarComponentes(String nuevosDatos, String simbolo){ //activa ciertos componentes dependiendo del panel visible
-        
+   private void activarComponentes(String nuevosDatos, String simbolo){ //activa ciertos componentes dependiendo del panel visible        
             labelNuevosDatos.setVisible(true);
             txtvalor.setVisible(true);
             labelSimbolo.setVisible(true);
