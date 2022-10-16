@@ -1,5 +1,4 @@
 package clases;
-
 import javax.swing.JComboBox;
 
 public class Anuncio {
@@ -11,11 +10,9 @@ public class Anuncio {
     protected String descripcion;
     protected double costo;
     protected double costoIva;
-
     
     //constructores
     public Anuncio() { 
-
         this.seccion = "";
         this.titulo = "";
         this.fecha = "";
@@ -106,14 +103,11 @@ public class Anuncio {
     }
 
     public double costoIva(JComboBox combo2) {
-
         
         costoIva = (float) (costo + (costo * 0.13));    
         return costoIva;
-
     }
-
-    
+  
    public String toString(int id, String datoExtra, String cost, String costoIv){
         
         String datos =              id +
@@ -129,4 +123,3 @@ public class Anuncio {
    
     } 
 }
-
