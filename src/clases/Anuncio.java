@@ -99,6 +99,32 @@ public class Anuncio {
 
         }
 
+
+        //valid refactorization?? 👉
+                // String selectedItem = combo.getSelectedItem().toString();
+                // Int costFactor = 0;
+        
+                // switch(selectedItem){
+                //     case "Nacionales":
+                //         costFactor = 80;
+                //         break;
+                //     case "Internacionales":
+                //         costFactor = 70;
+                //         break;
+                //     case "Deportes":
+                //         costFactor = 90;
+                //         break;
+                //     case "Culturales":
+                //         costFactor = 85;
+                //         break;
+                //     case "Económicos":
+                //         costFactor = 50;
+                //         break;
+                // }
+        
+                // costo = (costFactor * titulo.length()) + (costFactor * descripcion.length());
+
+        
         return costo;
     }
 
