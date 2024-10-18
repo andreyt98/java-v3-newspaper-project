@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
     Icon correcto = new javax.swing.ImageIcon(getClass().getResource("/images/correcto.png"));
     Icon alerta = new javax.swing.ImageIcon(getClass().getResource("/images/alerta.png"));
     Icon venta = new javax.swing.ImageIcon(getClass().getResource("/images/venta.png"));
-   
+    
     List<DatosCliente> listaCliente =  new ArrayList<>();
 
     public calculadoraAnuncio() {
@@ -58,7 +59,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         //inicializando los archivos a usar
         archivoClientes  =  new File("clientes.dat");
         archivoAnuncios  =  new File("anuncios.dat");
-        auxUpdate = new File("auxUpdate.dat");
+       
         auxDelete = new File("auxDelete.dat");
     
         //extras de diseño
@@ -73,6 +74,9 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         txtvalor.setBackground(new Color(0,0,0,50));     
         btnActualizar.setVisible(false);
         setIconImage(new ImageIcon(getClass().getResource("/images/thumbnail.png")).getImage()); //thumbnail
+        txtNombre.setVisible(false);
+        txtApellido.setVisible(false);
+        txtSegundoApellido.setVisible(false);
      
     }
    
@@ -631,302 +635,312 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Edad"
             }
-        ));
-        tablaActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaActualizarMouseClicked(evt);
+        )
+        {
+
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
-        });
-        jScrollPane2.setViewportView(tablaActualizar);
 
-        panelActualizar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 580, 70));
+        }
 
-        btnBuscar.setForeground(new java.awt.Color(51, 51, 51));
-        btnBuscar.setText("Buscar");
-        btnBuscar.setFocusPainted(false);
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseClicked(evt);
-            }
-        });
-        panelActualizar.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 100, 20));
+    );
+    tablaActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            tablaActualizarMouseClicked(evt);
+        }
+    });
+    jScrollPane2.setViewportView(tablaActualizar);
 
-        btnActualizar.setForeground(new java.awt.Color(51, 51, 51));
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnActualizarMouseClicked(evt);
-            }
-        });
-        panelActualizar.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 610, 310, -1));
+    panelActualizar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 580, 70));
 
-        jLabel23.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(122, 132, 191));
-        jLabel23.setText("ID de la persona a actualizar");
-        panelActualizar.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, -1));
+    btnBuscar.setForeground(new java.awt.Color(51, 51, 51));
+    btnBuscar.setText("Buscar");
+    btnBuscar.setFocusPainted(false);
+    btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            btnBuscarMouseClicked(evt);
+        }
+    });
+    panelActualizar.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 100, 20));
 
-        edad2.setBackground(new java.awt.Color(162, 161, 161));
-        edad2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        edad2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38 ", "39 ", "40 ", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "75", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
-        edad2.setFocusable(false);
-        panelActualizar.add(edad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 537, -1, -1));
+    btnActualizar.setForeground(new java.awt.Color(51, 51, 51));
+    btnActualizar.setText("Actualizar");
+    btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            btnActualizarMouseClicked(evt);
+        }
+    });
+    panelActualizar.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 610, 310, -1));
 
-        descripcionlabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        descripcionlabel.setForeground(new java.awt.Color(200, 207, 246));
-        descripcionlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        descripcionlabel.setText("Edad");
-        descripcionlabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        panelActualizar.add(descripcionlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 537, 50, 20));
+    jLabel23.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    jLabel23.setForeground(new java.awt.Color(122, 132, 191));
+    jLabel23.setText("ID de la persona a actualizar");
+    panelActualizar.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, -1));
 
-        txtNombre.setBackground(new java.awt.Color(52, 58, 94));
-        txtNombre.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNombre.setBorder(null);
-        panelActualizar.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 334, 260, 21));
+    edad2.setBackground(new java.awt.Color(162, 161, 161));
+    edad2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+    edad2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38 ", "39 ", "40 ", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "75", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
+    edad2.setEnabled(false);
+    edad2.setFocusable(false);
+    panelActualizar.add(edad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 537, -1, -1));
 
-        barraBsqueda3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelActualizar.add(barraBsqueda3, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 330, 280, 30));
+    descripcionlabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    descripcionlabel.setForeground(new java.awt.Color(200, 207, 246));
+    descripcionlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    descripcionlabel.setText("Edad");
+    descripcionlabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    panelActualizar.add(descripcionlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 537, 50, 20));
 
-        txtApellido.setBackground(new java.awt.Color(52, 58, 94));
-        txtApellido.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtApellido.setForeground(new java.awt.Color(204, 204, 204));
-        txtApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtApellido.setBorder(null);
-        panelActualizar.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 395, 260, 21));
+    txtNombre.setBackground(new java.awt.Color(52, 58, 94));
+    txtNombre.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtNombre.setForeground(new java.awt.Color(204, 204, 204));
+    txtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtNombre.setBorder(null);
+    panelActualizar.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 334, 260, 21));
 
-        barraBsqueda4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelActualizar.add(barraBsqueda4, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 390, 280, 30));
+    barraBsqueda3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelActualizar.add(barraBsqueda3, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 330, 280, 30));
 
-        txtSegundoApellido.setBackground(new java.awt.Color(52, 58, 94));
-        txtSegundoApellido.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtSegundoApellido.setForeground(new java.awt.Color(204, 204, 204));
-        txtSegundoApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtSegundoApellido.setBorder(null);
-        panelActualizar.add(txtSegundoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 474, 260, 21));
+    txtApellido.setBackground(new java.awt.Color(52, 58, 94));
+    txtApellido.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtApellido.setForeground(new java.awt.Color(204, 204, 204));
+    txtApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtApellido.setBorder(null);
+    panelActualizar.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 395, 260, 21));
 
-        barraBsqueda5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelActualizar.add(barraBsqueda5, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 470, 280, 30));
+    barraBsqueda4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelActualizar.add(barraBsqueda4, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 390, 280, 30));
 
-        jLabel7.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(200, 207, 246));
-        jLabel7.setText("Segundo Apellido");
-        panelActualizar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 477, 100, -1));
+    txtSegundoApellido.setBackground(new java.awt.Color(52, 58, 94));
+    txtSegundoApellido.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtSegundoApellido.setForeground(new java.awt.Color(204, 204, 204));
+    txtSegundoApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtSegundoApellido.setBorder(null);
+    panelActualizar.add(txtSegundoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 474, 260, 21));
 
-        jLabel8.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(200, 207, 246));
-        jLabel8.setText("Primer apellido");
-        panelActualizar.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 397, 90, -1));
+    barraBsqueda5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelActualizar.add(barraBsqueda5, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 470, 280, 30));
 
-        jLabel18.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(200, 207, 246));
-        jLabel18.setText("Nombre");
-        panelActualizar.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 338, -1, -1));
+    jLabel7.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    jLabel7.setForeground(new java.awt.Color(200, 207, 246));
+    jLabel7.setText("Segundo Apellido");
+    panelActualizar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 477, 100, -1));
 
-        tabs2.addTab("tab2", panelActualizar);
+    jLabel8.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    jLabel8.setForeground(new java.awt.Color(200, 207, 246));
+    jLabel8.setText("Primer apellido");
+    panelActualizar.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 397, 90, -1));
 
-        panelVerAnuncios.setBackground(new java.awt.Color(27, 32, 61));
-        panelVerAnuncios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    jLabel18.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    jLabel18.setForeground(new java.awt.Color(200, 207, 246));
+    jLabel18.setText("Nombre");
+    panelActualizar.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 338, -1, -1));
 
-        tablaVerDatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Tipo de Anuncio", "Sección", "Fecha", "Descripción", "Dato descriptivo", "Costo", "Costo IVA"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
+    tabs2.addTab("tab2", panelActualizar);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaVerDatos.setEnabled(false);
-        jScrollPane1.setViewportView(tablaVerDatos);
+    panelVerAnuncios.setBackground(new java.awt.Color(27, 32, 61));
+    panelVerAnuncios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelVerAnuncios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 780, 200));
+    tablaVerDatos.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null}
+        },
+        new String [] {
+            "ID", "Tipo de Anuncio", "Sección", "Fecha", "Descripción", "Dato descriptivo", "Costo", "Costo IVA"
+        }
+    ) {
+        boolean[] canEdit = new boolean [] {
+            false, false, false, false, false, false, false, false
+        };
 
-        txtBusqueda.setBackground(new java.awt.Color(52, 58, 94));
-        txtBusqueda.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtBusqueda.setForeground(new java.awt.Color(204, 204, 204));
-        txtBusqueda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtBusqueda.setBorder(null);
-        panelVerAnuncios.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 174, 260, 21));
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+        }
+    });
+    tablaVerDatos.setEnabled(false);
+    jScrollPane1.setViewportView(tablaVerDatos);
 
-        barraBsqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelVerAnuncios.add(barraBsqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 280, 30));
+    panelVerAnuncios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 780, 200));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-view-schedule-50.png"))); // NOI18N
-        jLabel13.setText("   Anuncios vendidos");
-        jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        panelVerAnuncios.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 41));
+    txtBusqueda.setBackground(new java.awt.Color(52, 58, 94));
+    txtBusqueda.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtBusqueda.setForeground(new java.awt.Color(204, 204, 204));
+    txtBusqueda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtBusqueda.setBorder(null);
+    panelVerAnuncios.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 174, 260, 21));
 
-        jLabel5.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(122, 132, 191));
-        jLabel5.setText("Busqueda por ID");
-        panelVerAnuncios.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 90, -1));
+    barraBsqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelVerAnuncios.add(barraBsqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 280, 30));
 
-        btnBuscarAnuncios.setText("Buscar");
-        btnBuscarAnuncios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarAnunciosMouseClicked(evt);
-            }
-        });
-        panelVerAnuncios.add(btnBuscarAnuncios, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 140, -1));
+    jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+    jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-view-schedule-50.png"))); // NOI18N
+    jLabel13.setText("   Anuncios vendidos");
+    jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+    panelVerAnuncios.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 41));
 
-        tabs2.addTab("tab3", panelVerAnuncios);
+    jLabel5.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    jLabel5.setForeground(new java.awt.Color(122, 132, 191));
+    jLabel5.setText("Busqueda por ID");
+    panelVerAnuncios.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 90, -1));
 
-        panelBorrar.setBackground(new java.awt.Color(27, 32, 61));
-        panelBorrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    btnBuscarAnuncios.setText("Buscar");
+    btnBuscarAnuncios.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            btnBuscarAnunciosMouseClicked(evt);
+        }
+    });
+    panelVerAnuncios.add(btnBuscarAnuncios, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 140, -1));
 
-        txtIdABorrar.setBackground(new java.awt.Color(52, 58, 94));
-        txtIdABorrar.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtIdABorrar.setForeground(new java.awt.Color(204, 204, 204));
-        txtIdABorrar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtIdABorrar.setBorder(null);
-        panelBorrar.add(txtIdABorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 186, 260, 21));
+    tabs2.addTab("tab3", panelVerAnuncios);
 
-        barraBsqueda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelBorrar.add(barraBsqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 280, 30));
+    panelBorrar.setBackground(new java.awt.Color(27, 32, 61));
+    panelBorrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(122, 132, 191));
-        jLabel15.setText("ID de la persona que desea eliminar");
-        panelBorrar.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, -1));
+    txtIdABorrar.setBackground(new java.awt.Color(52, 58, 94));
+    txtIdABorrar.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtIdABorrar.setForeground(new java.awt.Color(204, 204, 204));
+    txtIdABorrar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtIdABorrar.setBorder(null);
+    panelBorrar.add(txtIdABorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 186, 260, 21));
 
-        buscarParaBorrar.setText("Buscar");
-        buscarParaBorrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buscarParaBorrarMouseClicked(evt);
-            }
-        });
-        panelBorrar.add(buscarParaBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 90, -1));
+    barraBsqueda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelBorrar.add(barraBsqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 280, 30));
 
-        jLabel26.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(238, 94, 79));
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-delete-view-50 (1).png"))); // NOI18N
-        jLabel26.setText("  Borrar cliente");
-        jLabel26.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        panelBorrar.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 41));
+    jLabel15.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    jLabel15.setForeground(new java.awt.Color(122, 132, 191));
+    jLabel15.setText("ID de la persona que desea eliminar");
+    panelBorrar.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, -1));
 
-        tabs2.addTab("tab4", panelBorrar);
+    buscarParaBorrar.setText("Buscar");
+    buscarParaBorrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            buscarParaBorrarMouseClicked(evt);
+        }
+    });
+    panelBorrar.add(buscarParaBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 90, -1));
 
-        panelAgregarCliente.setBackground(new java.awt.Color(27, 32, 61));
-        panelAgregarCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    jLabel26.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+    jLabel26.setForeground(new java.awt.Color(238, 94, 79));
+    jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-delete-view-50 (1).png"))); // NOI18N
+    jLabel26.setText("  Borrar cliente");
+    jLabel26.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+    panelBorrar.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 41));
 
-        guardarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guardar.png"))); // NOI18N
-        guardarCliente.setBorderPainted(false);
-        guardarCliente.setContentAreaFilled(false);
-        guardarCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guardarh.png"))); // NOI18N
-        guardarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                guardarClienteMouseClicked(evt);
-            }
-        });
-        panelAgregarCliente.add(guardarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 220, 50));
+    tabs2.addTab("tab4", panelBorrar);
 
-        edad1.setBackground(new java.awt.Color(162, 161, 161));
-        edad1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        edad1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38 ", "39 ", "40 ", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "75", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
-        edad1.setFocusable(false);
-        panelAgregarCliente.add(edad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
+    panelAgregarCliente.setBackground(new java.awt.Color(27, 32, 61));
+    panelAgregarCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        jLabel17.setText("   Agregar cliente");
-        jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        panelAgregarCliente.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 40));
+    guardarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guardar.png"))); // NOI18N
+    guardarCliente.setBorderPainted(false);
+    guardarCliente.setContentAreaFilled(false);
+    guardarCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guardarh.png"))); // NOI18N
+    guardarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            guardarClienteMouseClicked(evt);
+        }
+    });
+    panelAgregarCliente.add(guardarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 220, 50));
 
-        jLabel20.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(146, 155, 204));
-        jLabel20.setText("Nombre");
-        panelAgregarCliente.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, -1, -1));
+    edad1.setBackground(new java.awt.Color(162, 161, 161));
+    edad1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+    edad1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38 ", "39 ", "40 ", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "75", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
+    edad1.setFocusable(false);
+    panelAgregarCliente.add(edad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(146, 155, 204));
-        jLabel21.setText("Primer apellido");
-        panelAgregarCliente.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 365, -1, -1));
+    jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+    jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+    jLabel17.setText("   Agregar cliente");
+    jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+    panelAgregarCliente.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 40));
 
-        jLabel22.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(146, 155, 204));
-        jLabel22.setText("Segundo apellido");
-        panelAgregarCliente.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 435, -1, -1));
+    jLabel20.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    jLabel20.setForeground(new java.awt.Color(146, 155, 204));
+    jLabel20.setText("Nombre");
+    panelAgregarCliente.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(146, 155, 204));
-        jLabel24.setText("ID");
-        panelAgregarCliente.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 225, -1, -1));
+    jLabel21.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    jLabel21.setForeground(new java.awt.Color(146, 155, 204));
+    jLabel21.setText("Primer apellido");
+    panelAgregarCliente.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 365, -1, -1));
 
-        jLabel25.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(146, 155, 204));
-        jLabel25.setText("Edad");
-        panelAgregarCliente.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 165, -1, -1));
+    jLabel22.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    jLabel22.setForeground(new java.awt.Color(146, 155, 204));
+    jLabel22.setText("Segundo apellido");
+    panelAgregarCliente.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 435, -1, -1));
 
-        txtId1.setBackground(new java.awt.Color(52, 58, 94));
-        txtId1.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtId1.setForeground(new java.awt.Color(204, 204, 204));
-        txtId1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtId1.setBorder(null);
-        panelAgregarCliente.add(txtId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 225, 260, 21));
+    jLabel24.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    jLabel24.setForeground(new java.awt.Color(146, 155, 204));
+    jLabel24.setText("ID");
+    panelAgregarCliente.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 225, -1, -1));
 
-        barraBsqueda6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelAgregarCliente.add(barraBsqueda6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 280, 30));
+    jLabel25.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 12)); // NOI18N
+    jLabel25.setForeground(new java.awt.Color(146, 155, 204));
+    jLabel25.setText("Edad");
+    panelAgregarCliente.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 165, -1, -1));
 
-        txtNombre1.setBackground(new java.awt.Color(52, 58, 94));
-        txtNombre1.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtNombre1.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombre1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNombre1.setBorder(null);
-        panelAgregarCliente.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 295, 260, 21));
+    txtId1.setBackground(new java.awt.Color(52, 58, 94));
+    txtId1.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtId1.setForeground(new java.awt.Color(204, 204, 204));
+    txtId1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtId1.setBorder(null);
+    panelAgregarCliente.add(txtId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 225, 260, 21));
 
-        barraBsqueda7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelAgregarCliente.add(barraBsqueda7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 280, 30));
+    barraBsqueda6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelAgregarCliente.add(barraBsqueda6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 280, 30));
 
-        txtApellido1.setBackground(new java.awt.Color(52, 58, 94));
-        txtApellido1.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtApellido1.setForeground(new java.awt.Color(204, 204, 204));
-        txtApellido1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtApellido1.setBorder(null);
-        panelAgregarCliente.add(txtApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 365, 260, 21));
+    txtNombre1.setBackground(new java.awt.Color(52, 58, 94));
+    txtNombre1.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtNombre1.setForeground(new java.awt.Color(204, 204, 204));
+    txtNombre1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtNombre1.setBorder(null);
+    panelAgregarCliente.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 295, 260, 21));
 
-        barraBsqueda8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelAgregarCliente.add(barraBsqueda8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 280, 30));
+    barraBsqueda7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelAgregarCliente.add(barraBsqueda7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 280, 30));
 
-        txtSegundoApellido1.setBackground(new java.awt.Color(52, 58, 94));
-        txtSegundoApellido1.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        txtSegundoApellido1.setForeground(new java.awt.Color(204, 204, 204));
-        txtSegundoApellido1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtSegundoApellido1.setBorder(null);
-        panelAgregarCliente.add(txtSegundoApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 435, 260, 21));
+    txtApellido1.setBackground(new java.awt.Color(52, 58, 94));
+    txtApellido1.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtApellido1.setForeground(new java.awt.Color(204, 204, 204));
+    txtApellido1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtApellido1.setBorder(null);
+    panelAgregarCliente.add(txtApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 365, 260, 21));
 
-        barraBsqueda9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
-        panelAgregarCliente.add(barraBsqueda9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 280, 30));
+    barraBsqueda8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelAgregarCliente.add(barraBsqueda8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 280, 30));
 
-        tabs2.addTab("tab2", panelAgregarCliente);
+    txtSegundoApellido1.setBackground(new java.awt.Color(52, 58, 94));
+    txtSegundoApellido1.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+    txtSegundoApellido1.setForeground(new java.awt.Color(204, 204, 204));
+    txtSegundoApellido1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    txtSegundoApellido1.setBorder(null);
+    panelAgregarCliente.add(txtSegundoApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 435, 260, 21));
 
-        getContentPane().add(tabs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, -30, 800, 690));
+    barraBsqueda9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busqueda.png"))); // NOI18N
+    panelAgregarCliente.add(barraBsqueda9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 280, 30));
 
-        pack();
-        setLocationRelativeTo(null);
+    tabs2.addTab("tab2", panelAgregarCliente);
+
+    getContentPane().add(tabs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, -30, 800, 690));
+
+    pack();
+    setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     //1.agregar cliente
@@ -1221,86 +1235,71 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
     //3.Actualizar datos del cliente
     //------------------------------
     
-    private void actualizarDatos(){
+    private void actualizarDatos() throws Exception{
  
-        BufferedReader archClienteR = null; //lectura archivo de clientes
-        BufferedWriter auxW = null; //escritura en archivo auxiliar
-     
-        if(archivoClientes.exists()){
-       
-            try {
-                auxUpdate.createNewFile(); //creamos archivo auxiliar
-
-
-                archClienteR = new BufferedReader(new FileReader(archivoClientes));//lectura de archivo original
+        if(archivoClientes.exists()){      
+            BufferedReader archClienteR = null; //lectura archivo de clientes
+            BufferedWriter auxW = null; //escritura en archivo auxiliar
+            try { 
+                
+                if(txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty() || txtSegundoApellido.getText().isEmpty() || edad2.getSelectedItem().toString().equals("Seleccionar...") ){          
+                   throw new Exception("Haga click en los datos de la tabla y no deje campos vacios");                  
+                }
+           
+               //creamos archivo auxiliar para escribir los datos modificados
+                auxUpdate = new File("auxUpdate.dat");
+                auxUpdate.createNewFile();
                 auxW =  new BufferedWriter(new FileWriter(auxUpdate,true));//escritura archivo auxiliar
-
-                String linea;  
+                                
+                archClienteR = new BufferedReader(new FileReader(archivoClientes));//lectura de archivo original
+                String linea; 
                 while((linea = archClienteR.readLine()) != null){//se itera sobre el archivo
+    
+                   StringTokenizer tokens = new StringTokenizer(linea,"-");
 
-
-                    StringTokenizer tokens = new StringTokenizer(linea,"-");
-
-                    int idCliente = Integer.parseInt(tokens.nextToken()); //cada variables guarda cada dato dentro del archivo
-                    String nombre = tokens.nextToken();
-                    String ape = tokens.nextToken();
-                    String ape2 = tokens.nextToken();
-                    int edad = Integer.parseInt(tokens.nextToken());
-
-
-                    //se instancia la clase de datos del cliente
+                   int idCliente = Integer.parseInt(tokens.nextToken()); //cada variable guarda cada dato que existe en el archivo
+                   String  nombre = tokens.nextToken();
+                   String ape = tokens.nextToken();
+                   String ape2 = tokens.nextToken();
+                   int edad = Integer.parseInt(tokens.nextToken());  
+                   
+                    // ----- POR CADA LINEA (O SEA POR CADA USER (si es que hay mas de 1) )
+                    //se crea un nuevo objeto de la clase de datosCliente
                     DatosCliente cl =  new DatosCliente(idCliente, nombre, ape, ape2, edad);
-                  
-                    //cuando se seleccione el registro a modificar de la tabla esos valores se mostraran en los textfields
+              
                     
-                    //estos campos guardan los nuevos 
+                    //y tambien un nuevo objeto con los nuevos valores ingresados por el usuario
                     String Nuevonombre =  txtNombre.getText();
                     String Nuevoape = txtApellido.getText();
                     String Nuevoape2 = txtSegundoApellido.getText();
                     int Nuevaedad = Integer.parseInt(edad2.getSelectedItem().toString());
-
+                    
                     DatosCliente cl2 =  new DatosCliente(idCliente, Nuevonombre, Nuevoape, Nuevoape2, Nuevaedad);
-
-                    //si el id existente es igual al recibido, se guardan los datos que ya existian (objeto cl)
-                    //sino, se guardan datos nuevos (cl2)
-                    if(idExiste(txtBusqueda2.getText(), archivoClientes)){
- 
+                                      
+                    //si el id en la linea actual del archivo clientes es igual al que queremos actualizar, se guardan los valores del form (objeto cl2) 
+                    //si no, se guardan los datos que ya existian (objeto cl) ya que no le vamos a cambiar nada a esa linea
+                    //Esto para guardar cada linea del archivo original
+                    if(txtBusqueda2.getText().equals(String.valueOf(idCliente))){
                         auxW.write(cl2.toString());
-
                     }else{
-
-                        auxW.write(cl.toString());
-                    }
-                }
-
-                JOptionPane.showMessageDialog(this, "registro actualizado con éxito!");
-
-                String [] titulos = {"ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Edad"};//titulos que tiene la tabla donde se muestrn datos
-
-                DefaultTableModel model =  new DefaultTableModel(titulos,0);
-
-                tablaActualizar.setModel(model);//limpia la tabla
-
-                txtBusqueda2.setText("");//limpiamos campos 
-                txtNombre.setText("");
-                txtApellido.setText("");
-                txtSegundoApellido.setText("");
-
-                //cerramos ambos archivos
-                auxW.close();
-                archClienteR.close();
-
-                archivoClientes.delete();//se borra el original
-                File auxiliar =  new File("clientes.dat");
-                auxUpdate.renameTo(auxiliar); //renombramos el auxiliar con el nombre del original
-
-            } catch (IOException ex) {
-                Logger.getLogger(calculadoraAnuncio.class.getName()).log(Level.SEVERE, null, ex);
+                       auxW.write(cl.toString());
+                    }               
             }
-
-        }
-       
+    
+                archClienteR.close();
+                auxW.close();
+                archivoClientes.delete();
+                auxUpdate.renameTo(new File("clientes.dat"));
+                
+            } catch (Exception ex) {
+                throw ex;
+            }finally{
+                archClienteR.close();
+                auxW.close();
+            }
+        }      
     }
+    
     
     //4.Ver anuncios vendidos
     //------------------------
@@ -1499,11 +1498,11 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         edad1.setSelectedItem(0);
     }
   
-    private void btnAvanzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAvanzarMouseClicked        
+    private void btnAvanzarMouseClicked(java.awt.event.MouseEvent evt) {                                                
         tipoDeAnuncio();
-    }//GEN-LAST:event_btnAvanzarMouseClicked
+    }                                       
 
-    private void btnCotizaRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCotizaRMouseClicked   
+    private void btnCotizaRMouseClicked(java.awt.event.MouseEvent evt) {                                           
             tabs2.setSelectedIndex(1);
             logofijado.setVisible(true);
             Icon iconCotizar = new javax.swing.ImageIcon(getClass().getResource("/images/cotizarH.png"));
@@ -1511,9 +1510,9 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
             btnCotizaR.setSelectedIcon(iconCotizar);
             limpiarTabla();
     
-    }//GEN-LAST:event_btnCotizaRMouseClicked
+    }                                       
 
-    private void actualizarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizarDatosMouseClicked     
+    private void actualizarDatosMouseClicked(java.awt.event.MouseEvent evt) {                                                  
         tabs2.setSelectedIndex(4);
         Icon iconActualizar = new javax.swing.ImageIcon(getClass().getResource("/images/actualizarH.png"));
         actualizarDatos.setSelectedIcon(iconActualizar);
@@ -1521,9 +1520,9 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         botonesTipoAnuncio.clearSelection();
         txtTitulo.setText("");
         txtDescripcion.setText("");
-    }//GEN-LAST:event_actualizarDatosMouseClicked
+    }                                            
 
-    private void btnVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseClicked   
+    private void btnVerMouseClicked(java.awt.event.MouseEvent evt) {                                       
         tabs2.setSelectedIndex(5);
         Icon iconVer = new javax.swing.ImageIcon(getClass().getResource("/images/verH.png"));
         btnVer.setSelectedIcon(iconVer);
@@ -1533,15 +1532,15 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         logofijado.setVisible(true);
         limpiarTabla();
 
-    }//GEN-LAST:event_btnVerMouseClicked
+    }                                   
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
         setState(calculadoraAnuncio.ICONIFIED);// TODO add your handling code here:
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
-    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked  
+    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {                                        
              System.exit(0);        
-    }//GEN-LAST:event_btnSalirMouseClicked
+    }                                     
 
     private void txtvalorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtvalorKeyPressed
 
@@ -1652,10 +1651,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                 String linea ;
 
                 if(idExiste(txtBusqueda2.getText(), archivoClientes)){
-
-                        btnActualizar.setVisible(true); //si hay datos. se pueden actualizar
-
-                    
+                        
                     while((linea = archClienteR.readLine()) != null){//iteramos sobre archivo
 
                         StringTokenizer tokens = new StringTokenizer(linea,"-");
@@ -1704,6 +1700,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
                     txtApellido.setText("");
                     txtSegundoApellido.setText("");
                     tablaActualizar.setModel(model);
+                    edad2.setSelectedIndex(0);
                     JOptionPane.showMessageDialog(this, "El id ingresado no está registrado.");
                 } 
 
@@ -1762,7 +1759,7 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         tabs2.setSelectedIndex(2);// TODO add your handling code here:
     }//GEN-LAST:event_flecha1MouseClicked
 
-    private void rechazarPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechazarPrecioMouseClicked        
+    private void rechazarPrecioMouseClicked(java.awt.event.MouseEvent evt) {                                                    
         tabs2.setSelectedIndex(0);
         botonesTipoAnuncio.clearSelection();
         botonesBarra.clearSelection();
@@ -1773,25 +1770,25 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         txtDescripcion.setText("");
         txtvalor.setText("");
 
-    }//GEN-LAST:event_rechazarPrecioMouseClicked
+    }                                           
 
-    private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked    
+    private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {                                           
         tabs2.setSelectedIndex(6);
         logofijado.setVisible(true);
         limpiarTabla();
-    }//GEN-LAST:event_btnBorrarMouseClicked
+    }                                      
 
-    private void aceptarPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aceptarPrecioMouseClicked 
+    private void aceptarPrecioMouseClicked(java.awt.event.MouseEvent evt) {                                            
         guardarAnuncio();  
-    }//GEN-LAST:event_aceptarPrecioMouseClicked
+    }                                          
 
-    private void guardarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarClienteMouseClicked       
+    private void guardarClienteMouseClicked(java.awt.event.MouseEvent evt) {                                                   
         if(agregarCliente() ){
             
             JOptionPane.showMessageDialog(this, "Cliente agregado!", "Felicidades!", 0, correcto);
             limpiarCampos();
         }
-    }//GEN-LAST:event_guardarClienteMouseClicked
+    }                                           
 
     //extras
    
@@ -1832,6 +1829,11 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+       btnActualizar.setVisible(false);
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtSegundoApellido.setText("");
+       edad2.setSelectedIndex(0);
         muestraClientesEnTabla();  
     }//GEN-LAST:event_btnBuscarMouseClicked
 
@@ -1839,35 +1841,70 @@ public class calculadoraAnuncio extends javax.swing.JFrame {
         verAnuncios();
     }//GEN-LAST:event_btnBuscarAnunciosMouseClicked
 
-    //cuando se selecciona un registro de la tabla, los valores dentro de ella se muestra en textfields para editar y actualizar el registro
     private void tablaActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaActualizarMouseClicked
-      DefaultTableModel model = (DefaultTableModel)tablaActualizar.getModel();
 
-        int seleccion = tablaActualizar.getSelectedRow(); 
-        
-        //guardamos cada dato segun su posicion
-        txtNombre.setText(model.getValueAt(seleccion, 1).toString());
-        txtApellido.setText(model.getValueAt(seleccion, 2).toString());
-        txtSegundoApellido.setText(model.getValueAt(seleccion, 3).toString());
-        
-        //al presionar el registro el combobox toma el valor que se habia guardado en el archivo
-        String comboEdad2 =  model.getValueAt(seleccion, 4).toString(); 
-        for (int i=0; i < edad2.getItemCount();i++){
-        
-            if(edad2.getItemAt(i).equalsIgnoreCase(comboEdad2)){
-            
-                edad2.setSelectedIndex(i);                
-            }     
+        try{
+            DefaultTableModel model = (DefaultTableModel)tablaActualizar.getModel();
+
+            int seleccion = tablaActualizar.getSelectedRow();
+
+            //guardamos cada dato segun su posicion
+            txtNombre.setText(model.getValueAt(seleccion, 1).toString());
+            txtApellido.setText(model.getValueAt(seleccion, 2).toString());
+            txtSegundoApellido.setText(model.getValueAt(seleccion, 3).toString());
+
+            //al presionar el registro el combobox toma el valor que se habia guardado en el archivo
+            String comboEdad2 =  model.getValueAt(seleccion, 4).toString();
+            for (int i=0; i < edad2.getItemCount();i++){
+
+                if(edad2.getItemAt(i).equalsIgnoreCase(comboEdad2)){
+
+                    edad2.setSelectedIndex(i);
+                }
+            }
+
+            txtNombre.setVisible(true);
+            txtApellido.setVisible(true);
+            txtSegundoApellido.setVisible(true);
+            edad2.setVisible(true);
+            btnActualizar.setVisible(true);
+            edad2.setEnabled(true);
+        }catch(Exception e){
+         JOptionPane.showMessageDialog(this, "Es probable que la tabla no este mostrando ningun dato aun");         
+
         }
+
     }//GEN-LAST:event_tablaActualizarMouseClicked
 
-    private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseClicked    
-            actualizarDatos();    
-    }//GEN-LAST:event_btnActualizarMouseClicked
+    //cuando se selecciona un registro de la tabla, los valores dentro de ella se muestra en textfields para editar y actualizar el registro
+    private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {                                               
+           
+        try{
+            actualizarDatos(); 
+           
+            JOptionPane.showMessageDialog(this, "registro actualizado con éxito!"); 
+            String [] titulos = {"ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Edad"};//titulos que tiene la tabla donde se muestrn datos 
 
-    private void buscarParaBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarParaBorrarMouseClicked 
+            DefaultTableModel model =  new DefaultTableModel(titulos,0);
+
+            tablaActualizar.setModel(model);//limpia la tabla
+            txtBusqueda2.setText("");//limpiamos campos 
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtSegundoApellido.setText("");
+            edad2.setSelectedIndex(0);
+            btnActualizar.setVisible(false);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "seleccione la edad");         
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, revise los datos");   
+        }
+         
+    }                                          
+
+    private void buscarParaBorrarMouseClicked(java.awt.event.MouseEvent evt) {                                               
             borrar(txtIdABorrar.getText());
-    }//GEN-LAST:event_buscarParaBorrarMouseClicked
+    }                                             
 
    private void activarComponentes(String nuevosDatos, String simbolo){ //activa ciertos componentes dependiendo del panel visible        
             labelNuevosDatos.setVisible(true);
